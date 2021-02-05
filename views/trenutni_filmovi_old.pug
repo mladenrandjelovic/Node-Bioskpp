@@ -1,0 +1,32 @@
+extends ../layout
+block content
+    .movies-container
+        each film in trenutni_filmovi
+            .movie-card
+                .movie-header.theDarkTower
+                // movie-header
+                .movie-content
+                    .movie-content-header
+                        a(href='#')
+                        h3.movie-title=film.naziv
+                    .movie-info
+                        each termin in termini_za_filmove
+                            if termin.film_id==film.id
+                                .info-section
+                                    label Datum &amp; Time
+                                    span=termin.vreme_prikazivanja
+                                    br
+                                // date,time
+                                .info-section
+                                    label Sala
+                                    span=termin.sala_id
+                                    br
+                                // screen
+                                .info-section
+                                    label Rezervacija
+                                    span REZERVACIJA
+                                    br
+                        // seat
+                    // movie-content
+                // movie-card
+                // container

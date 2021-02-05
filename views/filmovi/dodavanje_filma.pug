@@ -1,0 +1,34 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center.my-5
+            img(src='/slike/logo.png' alt='Logo' height="20%" width="20%")
+        .row.justify-content-center
+            .col-xs-12.col-md-6
+                form(action='/filmovi/dodaj' method='POST')
+                    .form-group
+                    label(for='naziv') Naziv
+                    input#naziv.form-control(type='text' name='naziv')
+                    .form-group
+                    label(for='izvorni_naziv') Izvorni naziv
+                    input#izvorni_naziv.form-control(type='text' name='izvorni_naziv')
+                    .form-group
+                    label(for='trajanje') Trajanje
+                    input#trajanje.form-control(type='text' name='trajanje')
+                    .form-group
+                    label(for='drzava') Dr&zcaron;ava
+                    input#drzava.form-control(type='text' name='drzava')
+                    .form-group
+                    label(for='slika') Slika
+                    input#slika.form-control(type='text' name='slika')
+                    .form-group
+                    label(for='imdb_link') IMDb link
+                    input#imdb_link.form-control(type='text' name='imdb_link')
+                    .form-group
+                    label(for='pocetak_prikazivanja') Po&ccaron;etak prikazivanja
+                    input#pocetak_prikazivanja.form-control(type='date' name='pocetak_prikazivanja' value='2020-01-02')
+                    .form-group
+                    label(for='kraj_prikazivanja') Kraj prikazivanja
+                    input#kraj_prikazivanja.form-control(type='date' name='kraj_prikazivanja' value='2020-01-03')
+                    .form-group
+                    button.btn.btn-danger(type='submit') Dodaj film

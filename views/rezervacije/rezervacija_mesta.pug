@@ -1,0 +1,31 @@
+extends ../layout
+block content
+    .row.py-4(style='margin: auto')
+        main.col-md-9.ml-sm-auto.col-lg-10.px-4(role='main')
+            .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+                h2#asd=termin_info.naziv_filma+" ("+termin_info.vreme_prikazivanja+") "+termin_info.naziv_sale+" Cena karte je: "+termin_info.cena_karte
+            form(action='/rezervacije/dodaj/'+termin_info.id method='POST')
+                .form-group
+                    - for (var red = 1; red <= termin_info.broj_redova; ++red) {
+                        .d-flex.justify-content-center=red
+                            - for (var mesto_u_redu = 1; mesto_u_redu <= termin_info.broj_mesta_u_redu; ++mesto_u_redu) {
+                                -var mesto_je_rezervisano=0;
+                                -for(var i=0;i<rezervisana_mesta.length;i++){
+                                    if red==rezervisana_mesta[i].red && rezervisana_mesta[i].mesto_u_redu==mesto_u_redu
+                                        -mesto_je_rezervisano=1;
+                                - }
+                                
+                                .d-flex.justify-content-center
+                                    if mesto_je_rezervisano==1
+                                        input#sedista(type='checkbox' class='sediste' name='sediste' value=red+'x'+mesto_u_redu disabled checked)
+                                    else
+                                        input#sedista(type='checkbox' class='sediste' name='sediste' value=red+'x'+mesto_u_redu)
+                                
+                            - }
+                    - }
+                .d-flex.justify-content-center
+                    .form-group
+                            button.btn.btn-primary(type='submit') REZERVIŠI
+
+
+

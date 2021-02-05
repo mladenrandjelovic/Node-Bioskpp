@@ -1,0 +1,33 @@
+.sa_pozadinom
+{
+  min-height: 95vh;
+  background-image:url('../slike/pozadina.jpg');
+  background-repeat: repeat;
+}
+.tekst_sa_pozadinom
+{
+  background-color:rgba(0, 0, 0, 0.322);
+}
+#ucitavanje{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: gray;
+  color: white;
+  opacity: 1;
+  transition: 0.5s;
+  visibility: visible;
+}
+#ucitavanje.sakriveno{
+  opacity: 0;
+  visibility: hidden;
+}
+#ucitvanjeSlika{
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 100px;
+  height: 100px;
+}

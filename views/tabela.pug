@@ -1,0 +1,26 @@
+extends ../layout
+block content
+    .container
+        table.table
+            thead
+                tr
+                th(scope='col') #
+                th(scope='col') Ime
+                th(scope='col') Prezime
+                th(scope='col') E-Mail
+                th(scope='col') Broj telefona
+                th(scope='col') Akcija
+            tbody
+            -var red=1
+            each korisnik in korisnici
+                tr
+                td=red++
+                td=korisnik.ime
+                td=korisnik.prezime
+                td=korisnik.email
+                td=korisnik.broj_telefona
+                td
+                    form(action='/korisnici/obrisi/'+korisnik.id method='POST')
+                        button.btn.btn-danger(type='submit') Obriši
+
+

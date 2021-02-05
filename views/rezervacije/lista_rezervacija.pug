@@ -1,0 +1,34 @@
+extends ../layout
+block content
+    .container
+        table.table
+            thead
+                tr
+                th(scope='col') #
+                th(scope='col') Naziv filma
+                th(scope='col') Sala
+                th(scope='col') Početak prikazivanja
+                th(scope='col') Cena karata
+                th(scope='col') Broj rezervacije
+                th(scope='col') Šifra rezervacije
+                th(scope='col') Vreme rezervacije
+                th(scope='col') Akcija
+            tbody
+            -var red=1
+            each rezervacija in rezervacije
+                tr
+                td=red++
+                td=rezervacija.naziv_filma
+                td=rezervacija.naziv_sale
+                td=rezervacija.vreme_prikazivanja
+                td=rezervacija.cena_karata
+                td=rezervacija.id
+                td=rezervacija.sifra_rezervacije
+                td=rezervacija.vreme_rezervacije
+                td
+                    
+                    form(action='/rezervacije/obrisi/'+rezervacija.id method='POST')
+                        a.btn.btn-primary(href='/rezervacije/'+rezervacija.id role='button') Info
+                        button.btn.btn-danger(type='submit') Obriši
+
+

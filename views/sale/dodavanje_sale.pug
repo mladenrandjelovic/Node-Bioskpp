@@ -1,0 +1,19 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center.my-5
+            img(src='/slike/logo.png' alt='Logo' height="20%" width="20%")
+        .row.justify-content-center
+            .col-xs-12.col-md-6
+                form(action='/sale/dodaj' method='POST')
+                    .form-group
+                    label(for='naziv') Naziv bioskopske sale
+                    input#naziv.form-control(type='text' name='naziv')
+                    .form-group
+                    label(for='broj_redova') Broj redova
+                    input#broj_redova.form-control(type='text' name='broj_redova')
+                    .form-group
+                    label(for='broj_mesta_u_redu') Broj mesta u redu
+                    input#broj_mesta_u_redu.form-control(type='text' name='broj_mesta_u_redu')
+                    .form-group
+                    button.btn.btn-danger(type='submit') Dodaj bioskopsku salu

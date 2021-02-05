@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    title= title
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js',integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1',crossorigin='anonymous')
+    script(src='/javascripts/app.js')
+    link(rel='stylesheet',href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T',crossorigin='anonymous')
+    link(rel='stylesheet' href="/stylesheets/moviecard.css")
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM',crossorigin='anonymous')
+    link(rel='stylesheet',href='/stylesheets/app.css')
+    body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+      a.navbar-brand(href='#') MovieX
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/filmovi/trenutni') Trenutno u bioskopu
+          li.nav-item.active
+            a.nav-link(href='/filmovi/najava') U najavi
+          li.nav-item.active
+            a.nav-link(href='/filmovi/arhiva') Arhiva filmova
+            //- Ako je korisnik admin on ima mogucnost da doda film,doda salu,termin i da pregleda danasnje termine //
+          if locals.tip_naloga=='admin' 
+            li.nav-item.active
+              a.nav-link(href='/filmovi/dodaj') Dodaj film
+            li.nav-item.active
+              a.nav-link(href='/sale/dodaj') Dodaj salu
+            li.nav-item.active
+              a.nav-link(href='/filmovi/nearhivirani') Dodaj termin
+            li.nav-item.active
+              a.nav-link(href='/termini/danasnji') Današnji termini
+          li.nav-item.active
+            a.nav-link(href='/onama') O nama
+          li.nav-item.active
+            a.nav-link(href='/kontakt') Kontakt
+            //-ako korisnik nije uglovan u navbaru treba da mu se prikaze dugme za Prijavu i Registraciju //
+        if locals.korisnik_id==null
+          ul.navbar-nav
+            li.nav-item.active
+              a.nav-link(href='/prijava') Prijava
+            li.nav-item.active
+              a.nav-link(href='/registracija') Registracija
+          a(href="{{url_for('login')}}")
+            i.fas.fa-sign-out-alt
+            //-ako je korisnik ulogovan njemu treba da se prikaze dugme za pregled rezervacija "Moje rezervacije" i dugme za odjavu //
+        else 
+          ul.navbar-nav
+            li.nav-item.active
+              a.nav-link(href='/rezervacije/moje') Moje rezervacije
+            li.nav-item.active
+              form(action='/odjava' method='post')
+                input(type='submit' class="btn btn-primary" value='Odjava')
+                //-u slucaju da je korisnku potrebno prikazati poruku o uspesnom izvresnju neke radnje(zelena poruka) Ova promenjiva se prosledjuje iz rute  //
+    if uspesno
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-success(role='alert')=uspesno
+                          //- ispisuje mu se poruka //
+            //-u slucaju da je korisnku potrebno prikazati poruku o gresci (crvena poruka) Ova promenjiva se prosledjuje iz rute  //
+    if greska
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-danger(role='alert')=greska
+                      //- ispisuje mu se poruka //
+    //-u slucaju da je korisnku potrebno prikazati poruku upozorenja (zuta poruka) Ova promenjiva se prosledjuje iz rute  //
+    if info
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-warning(role='alert')=info
+                    //- ispisuje mu se poruka //
+    //-isto kao i iznad samo sto se ove poruke nalaze u sesiji,pa su prebacene kao lokalne promenjive u responsu kako bi mogle da se ispisu,postoji tri tipa poruke:uspesnp,greska i info //
+    if locals.tip_poruke=="uspesno"
+            
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-success(role='alert')=locals.sadrzaj_poruke
+    if locals.tip_poruke=="greska"
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-danger(role='alert')=locals.sadrzaj_poruke
+    if locals.tip_poruke=="info"
+      .row.justify-content-center
+          .col-xs-12.col-md-6
+            .alert.alert-warning(role='alert')=locals.sadrzaj_poruke
+          
+    block content

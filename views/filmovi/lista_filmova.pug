@@ -1,0 +1,28 @@
+extends ../layout
+block content
+	each film in filmovi
+		.card-view
+			.card-movie-header
+				img.movie-img(src=film.slika)
+				.card-header-icon
+				a(href='#')
+			.card-movie-content
+				.card-movie-content-head
+				a(href='#')
+					h3.card-movie-title=film.naziv
+				.ratings
+				// IMDB ocena kad povezes
+				.card-movie-info
+					.card-movie-info-row
+						.card-movie-info-section-name Po&ccaron;etak prikazivanja
+						.card-movie-info-section-name Kraj prikazivanja
+						.card-movie-info-section-name Zemlja porekla
+						.card-movie-info-section-name Trajanje filma
+					.card-movie-info-row
+						.card-movie-info-section=film.pocetak_prikazivanja
+						.card-movie-info-section=film.kraj_prikazivanja
+						.card-movie-info-section=film.drzava
+						.card-movie-info-section=film.trajanje+" minuta"
+
+
+

@@ -1,0 +1,28 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center
+            table.table
+                thead
+                    tr
+                    th(scope='col') #
+                    th(scope='col') Naziv filma
+                    th(scope='col') Sala
+                    th(scope='col') Vreme prikazivanja
+                    th(scope='col') Cena karte
+                    th(scope='col') Akcija
+                tbody
+                -var red=1
+                each termin in termini
+                    tr
+                    td=red++
+                    td=termin.naziv_filma
+                    td=termin.naziv_sale
+                    td=termin.vreme_prikazivanja
+                    td=termin.cena_karte
+                    td
+                        form(action='/termini/obrisi/'+termin.id method='POST')
+                            a.btn.btn-primary(href='/rezervacije/termin/'+termin.id role='button') Prikaži rezervacije
+                            button.btn.btn-danger(type='submit') Obriši
+
+

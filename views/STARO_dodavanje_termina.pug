@@ -1,0 +1,28 @@
+extends ../layout
+block content
+   .container
+        .row.justify-content-center.my-5
+            img(src='/static/logo.png' alt='Logo')
+        .row.justify-content-center
+            .col-xs-12.col-md-6
+                h1 OVDE IDE NAZIV FILMA
+                form(action='' method='POST')
+                    table.table
+                        thead
+                            tr
+                                th(scope='col') #
+                                th(scope='col') Po&ccaron;etak prikazivanja
+                                th(scope='col') Sala
+                        tr
+                            td
+                            | 1
+                            td
+                                input#broj_mesta_u_redu.form-control(type='datetime-local' name='broj_mesta_u_redu')
+                            td
+                                select#sala(name='sala')
+                                    option(value='volvo') Sala 1
+                                    option(value='saab') Sala 2
+                                    option(value='fiat') Sala 3
+        #ucitavanje
+        #ucitvanjeSlika
+            img(src='slike/logoUcitavanje.png')

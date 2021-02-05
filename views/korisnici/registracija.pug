@@ -1,0 +1,27 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center.my-5
+            img(src='/slike/logo.png' alt='Logo' height="20%" width="20%")
+        .row.justify-content-center
+            .col-xs-12.col-md-6
+                form(action='/registracija' method='POST')
+                    .form-group
+                    label(for='ime') Ime
+                    input#ime.form-control(type='text' name='ime')
+                    .form-group
+                    label(for='prezime') Prezime
+                    input#prezime.form-control(type='text' name='prezime')
+                    .form-group
+                    label(for='email') Email
+                    input#email.form-control(type='email' name='email')
+                    .form-group
+                    label(for='email') Broj telefona
+                    input#email.form-control(type='br_telefona' name='br_telefona')
+                    .form-group
+                    label(for='lozinka') Lozinka
+                    input#lozinka.form-control(type='password' name='lozinka')
+                    .form-group
+                    button.btn.btn-primary(type='submit') Registruj se
+
+

@@ -1,0 +1,42 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center
+            .col-3
+                form(action='/registracija' method='POST')
+                    .form-group
+                    label(for='film') Film
+                    input#film.form-control(type='text' name='film' value=rezervacija_info.naziv_filma disabled)
+                    .form-group
+                    label(for='sala') Sala
+                    input#sala.form-control(type='text' name='sala' value=rezervacija_info.naziv_sale disabled)
+                    .form-group
+                    label(for='pocetak_filma') Početak filma
+                    input#pocetak_filma.form-control(type='text' value=rezervacija_info.vreme_prikazivanja name='pocetak_filma' disabled)
+                    .form-group
+                    label(for='ukupna_cena') Ukupna cena
+                    input#ukupna_cena.form-control(type='text' value=rezervacija_info.cena_karata name='ukupna_cena' disabled)
+                    .form-group
+                    label(for='broj_rezervacije') Broj rezervacije
+                    input#broj_rezervacije.form-control(type='text' value=rezervacija_info.id name='broj_rezervacije' disabled)
+                    label(for='sifra_rezervacije') Šifra rezervacije
+                    input#sifra_rezervacije.form-control(type='text' value=rezervacija_info.sifra_rezervacije name='sifra_rezervacije' disabled)
+                    label(for='vreme_rezervacije') Vreme rezervacije
+                    input#vreme_rezervacije.form-control(type='text' value=rezervacija_info.vreme_rezervacije name='vreme_rezervacije' disabled)
+            .col-3
+                h2 Mesta
+                table.table
+                    thead
+                        tr
+                        th(scope='col') #
+                        th(scope='col') Red
+                        th(scope='col') Mesto
+                    tbody
+                    -var red=1
+                    each sediste in rezervisana_mesta
+                        tr
+                        td=red++
+                        td=sediste.red
+                        td=sediste.mesto_u_redu
+
+

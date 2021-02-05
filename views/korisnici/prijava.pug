@@ -1,0 +1,19 @@
+extends ../layout
+block content
+    .container
+        .row.justify-content-center.my-5
+            img(src='/slike/logo.png' alt='Logo' height="20%" width="20%")
+        .row.justify-content-center
+           
+            .col-xs-12.col-md-6
+                form(action='/prijava' method='POST')
+                    .form-group
+                    label(for='email') Email
+                    input#email.form-control(type='email' name='email')
+                    .form-group
+                    label(for='lozinka') Lozinka
+                    input#lozinka.form-control(type='password' name='lozinka')
+                    .form-group
+                    button.btn.btn-primary(type='submit') Prijavi se
+
+

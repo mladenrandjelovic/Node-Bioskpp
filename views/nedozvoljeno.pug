@@ -1,0 +1,35 @@
+extends ../layout
+block content
+    each film in trenutni_filmovi
+        .card-view
+            .card-header
+                img.movie-img(src=film.slika)
+                .card-header-icon
+                a(href='#')
+            .card-movie-content
+                .card-movie-content-head
+                a(href='#')
+                    h3.card-movie-title=film.naziv
+                .ratings
+                    // IMDB ocena kad povezes
+                .card-movie-info
+                    -var postoji_termin=0
+                    each termin in termini_za_filmove
+                        if termin.film_id==film.id
+                            .card-movie-info-row
+                                .card-movie-info-section-name Po&ccaron;etak prikazivanja
+                                .card-movie-info-section-name Sala
+                                .card-movie-info-section-name Rezervacija
+                            -postoji_termin=1
+                            -break
+                    if postoji_termin==0
+                            .card-movie-info-row
+                                b Za ovaj film ne postoje termini.
+                    each termin in termini_za_filmove
+                        if termin.film_id==film.id
+                            .card-movie-info-row
+                                .card-movie-info-section=termin.vreme_prikazivanja
+                                .card-movie-info-section=termin.naziv_sale
+                                a.reservation-btn(href='/rezervacija/'+termin.id) REZERVI&Scaron;I
+
+

@@ -1,0 +1,9 @@
+extends ../layout
+block content
+    .row
+        .col-md-12.text-center 
+            h1 Nemate dozvolu za pristup ovom delu sajta
+            if locals.korisnik_id==null
+                h1 Prijavite se
+
+    

@@ -1,0 +1,21 @@
+extends ../layout
+block content
+    .container
+        table.table
+            thead
+                tr
+                th(scope='col') #
+                th(scope='col') Naziv filma
+                th(scope='col') Izvorni naziv filma
+                th(scope='col') Akcija
+            tbody
+            -var red=1
+            each film in filmovi
+                tr
+                td=red++
+                td=film.naziv
+                td=film.izvorni_naziv
+                td
+                    a.btn.btn-warning(href='/termini/dodaj/'+film.id role='button') Dodaj termin
+
+
